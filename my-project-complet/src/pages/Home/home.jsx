@@ -9,6 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+//import {Datatable} from 'react-datatable';
+
+//pagination
+//import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import {Pagination} from '@primer/react'
+
 //import {Modal} from '@bernic/npm-modal';
 
 import './home.css';
@@ -41,26 +47,41 @@ function Home() {
         responseBody.departement = departement
 
         console.log(JSON.stringify(responseBody))
-	//Form submission happens here
     }
     const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
         setFunction(event.target.value)
     }
 
-
-
-
+    //pagination
+    const [page, setPage]  = useState("")
+      const totalPages = 7
+      const onPageChange = (evt, page) => {
+        evt.preventDefault()
+        setPage(page)
+      }
 
 //dropdown
-const options = [
- 'Français', 'Néerlandais', 'Anglais', 'Alabama'];
-
+const options = ['Français', 'Néerlandais', 'Anglais', 'Alabama'];
 const departements = ['Sales', 'Marketing', 'Engineering', 'Human Resources', 'Legal'];
 
+
 //modale
-/* function handleClick() {
-  console.log('hello');
-} */
+
+
+//data-table
+const handleAddFormSubmit = (event) =>{
+  event.preventDefault();
+  responseBody.firstName = firstName
+  responseBody.lastName = lastName
+  responseBody.birthDate = birthDate
+  responseBody.startDate = startDate
+  responseBody.street = street
+  responseBody.city = city
+  responseBody.state = state
+  responseBody.zipCode = zipCode
+  responseBody.departement = departement
+} 
+
 
   return (
     <div className="body">
@@ -69,10 +90,10 @@ const departements = ['Sales', 'Marketing', 'Engineering', 'Human Resources', 'L
         <p>Welcome to</p>
         <p className="nameOfCompany">WEALTH HEALTH</p>
 
-        <a className="link form" href="#demo">
-          Create a New Employee (plugin: date_picker, tables_données, modal)
+        <a className="link form" href="#create_new_employee">
+          Create a New Employee 
         </a>
-        <aside id="demo" className="modal"  aria-hidden="true" role="dialog" aria-labelledby="titlemodal" >
+        <aside id="create_new_employee" className="modal"  aria-hidden="true" role="dialog" aria-labelledby="titlemodal" >
           <div className="modal-wrapper">
             <a href="#form_create_employee" className="modal_close"> X </a>
             <div className="container">
@@ -108,10 +129,8 @@ const departements = ['Sales', 'Marketing', 'Engineering', 'Human Resources', 'L
                 <label id="departement" htmlFor="state">Departement<br></br>
                 <Dropdown  id="departement" options={departements} className="departement" onChange={setDepartement} placeholder="Select your departement" />
                 </label>
-
-                {/* onClick={() => this.handleClick()} */}
                 <button type="submit"  className="modal-close-button"
-                    >Send</button>
+                    >Save</button>
               </form>
             </div>
 
@@ -119,19 +138,49 @@ const departements = ['Sales', 'Marketing', 'Engineering', 'Human Resources', 'L
         </aside>
 
         <a className="link table" href="#table" >
-          Current Employees table (plugin: menu deroulant)
+          Current Employees table 
         </a>
         <aside id="table" className="modal"   aria-hidden="true" role="dialog" aria-labelledby="titlemodal" >
-          <div className="modal-wrapper">
+          <div className="modal-wrapper CurentEmpl">
             <a href="#employees-table" className="modal_close"> X </a>
-            <div className="container">
+            <div className="containerCurentEmpl">
               <p> Current Employees </p>
+              <div className="table-container">
+<table onSubmit={handleAddFormSubmit}>
+  <thead>
+    <tr>
+  {/*   <TablePaginationUnstyled  component="div" rowsPerPageOptions={[10, 50]}/> */}
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Start Date</th>
+    <th>Departement</th>
+    <th>Date of Birthday</th>
+    <th>Street</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{firstName}</td> 
+      <td>{lastName}</td>
+      <td>{birthDate}</td>
+      <td>{startDate}</td>
+      <td>{street}</td>
+      <td>{city}</td>
+      <td>{state}</td>
+      <td>{zipCode}</td>
+      <td>{departement}</td>
+    </tr>
+  </tbody>
+</table>
+<Pagination className="box-pagination" pageCount={totalPages} currentPage={page} onPageChange={onPageChange} />
+</div>
+
               </div>
               </div>
               </aside>
-
-
-
 
       </div>
       <div className="App-body-plugins">
