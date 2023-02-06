@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  employeesKnown: [
+  employeesSaved: [
     {
       // id: 0,
       firstname: 'Adam',
@@ -35,7 +35,7 @@ const userSlice = createSlice({
   reducers: {
     addEmployee(state, action) {
       // add in my table the new employees
-      state.employeesKnown.push(action.payload)
+      state.employeesSaved.push(action.payload)
     },
   },
 })

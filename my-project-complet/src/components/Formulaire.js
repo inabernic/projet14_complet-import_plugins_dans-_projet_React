@@ -1,8 +1,8 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 
 //modal
-//import { Modal } from ''
+import Modal from 'react-modal';
 
 //dataPicker
 import DatePicker from 'react-datepicker'
@@ -17,10 +17,8 @@ import { useForm, Controller } from 'react-hook-form'
 import { addEmployee } from '../store/user'
 import { optionStates, optionDepartment } from './../data/data'
 
+
 function FormHRnet() {
-  const [openModal, setOpenModal] = useState(false)
-  //const message = `L'employé a été créé`
-  const [message, setMessage] = useState('')
   //redux
   const dispatch = useDispatch()
   //reference formulaire
@@ -38,8 +36,24 @@ function FormHRnet() {
 
   //format date datepicker
   const dateFormated = (date) => {
-    return `${format(new Date(date), 'dd-MM-yyyy')}`
+    return `${format(new Date(date), 'dd/MM/yyyy')}`
   }
+
+  // opening  of the modal
+ let subtitle;
+ const [modalIsOpen, setIsOpen] = React.useState(false);
+ function openModal() {
+   setIsOpen(true);
+ }
+
+ function afterOpenModal() {
+   // references are now sync'd and can be accessed.
+   subtitle.style.color = '#fff';
+ }
+
+ function closeModal() {
+   setIsOpen(false);
+ }
 
   //submite button
   const createEmployee = (data) => {
@@ -66,16 +80,12 @@ function FormHRnet() {
       //2. add the new employee (FormatData)
       //3. on the refresh , keep the localstorage
 
-      //employeesLocalStorage.push(FormatData)
+    localStorage.push(FormatData)
+    console.log(FormatData)
       localStorage.setItem(
         'persist:user',
         JSON.stringify('FormatData', FormatData)
-      )
-      // opening  of the modal and the message
-      setOpenModal(true)
-      setMessage(
-        `Employee  ${data.firstname} ${data.lastname}  has been created `
-      )
+      ) 
       reset({
         firstname: '',
         lastname: '',
@@ -84,8 +94,10 @@ function FormHRnet() {
         state: '',
         zipcode: null,
       })
+      //condition for open the modal
+     setIsOpen(true);
     } else {
-      console.log('incomplete form')
+      console.log('Incomplete form')
     }
   }
 
@@ -247,15 +259,24 @@ function FormHRnet() {
           {errors.department && errors.department.message}
         </span>
 
-        <button
+        <button onClick={openModal}
           type="submit"
         >
           Save
         </button>
-        {openModal 
-        // && <Modal closeModal={setOpenModal} content={message} />
-        } 
-      </form>
+        <div className="box-modal">
+        <Modal className="style-modal"
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        ariaHideApp={false}
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>The employee{/*  ${data.firstname} ${data.lastname} */} has been created </h2>
+        <button className='btn-close' onClick={closeModal}>X</button>
+      </Modal>
+      </div>
+</form>
     </div>
   )
 }

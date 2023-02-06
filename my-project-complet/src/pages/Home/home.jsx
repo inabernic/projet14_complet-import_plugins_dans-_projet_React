@@ -5,8 +5,10 @@ import health from '../../assets/health.png'
 import './Home.css'
 
 function Accueil() {
-  const employeesLocalStorage = localStorage.getItem('persist:user')
-  console.log('local', employeesLocalStorage)
+   const employeesLocalStorage = localStorage.getItem('persist: user')
+  console.log('local', employeesLocalStorage) 
+  //for delete the data of localstorage
+  //localStorage.clear();
   return (
     <div className="body">
       <div className="App-nav-vertical">

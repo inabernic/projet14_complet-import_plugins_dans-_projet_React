@@ -53,8 +53,8 @@ function List() {
   ]
 
   //select user in reducer
-  const userCreated = useSelector((state) => state.user.employeesKnown)
-
+  const userCreated = useSelector((state) => state.user.employeesSaved)
+console.log(userCreated)
   //SearchBar
   const [search, setNewSearch] = useState('')
 
@@ -77,7 +77,7 @@ function List() {
       )
 
   return (
-<div>
+<div className="container_table">
         <div>
         <div>
       <div className="box_search">
@@ -98,7 +98,6 @@ function List() {
         pagination
       />
     </div>
-     
       </div>
     </div>
   )

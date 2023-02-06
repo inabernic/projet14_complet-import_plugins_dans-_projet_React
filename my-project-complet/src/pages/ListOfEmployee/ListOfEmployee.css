@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.container_table {
+    width: 85%;
+}
+
 .body_table h1 {
     color: #37773a;
     margin-block-start: 1rem;
