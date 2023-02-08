@@ -1,8 +1,12 @@
-import React from 'react'
-import { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useForm, Controller } from 'react-hook-form'
+import { addEmployee } from '../store/user'
+import { optionStates, optionDepartment } from './../data/data'
 
 //modal
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
+import {Modal} from '@bernic/npm-modal'
 
 //dataPicker
 import DatePicker from 'react-datepicker'
@@ -12,27 +16,21 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
 import { format } from 'date-fns'
 
-import { useDispatch } from 'react-redux'
-import { useForm, Controller } from 'react-hook-form'
-import { addEmployee } from '../store/user'
-import { optionStates, optionDepartment } from './../data/data'
-
 
 function FormHRnet() {
   //redux
   const dispatch = useDispatch()
   //reference formulaire
   const form = useRef(null)
-
   // use useForm
   const {
     register,
     handleSubmit,
     reset,
     control,
-    defaultValues,
     formState: { errors, isValid },
   } = useForm()
+console.log(errors);
 
   //format date datepicker
   const dateFormated = (date) => {
@@ -40,85 +38,77 @@ function FormHRnet() {
   }
 
   // opening  of the modal
- let subtitle;
- const [modalIsOpen, setIsOpen] = React.useState(false);
- function openModal() {
-   setIsOpen(true);
- }
+ const [displayModal, setDisplayModal] = useState(false);
 
- function afterOpenModal() {
-   // references are now sync'd and can be accessed.
-   subtitle.style.color = '#fff';
+ function openModal() {
+  setDisplayModal(true);
+   console.log("functioa openModal"+displayModal)
  }
 
  function closeModal() {
-   setIsOpen(false);
+  setDisplayModal(false);
  }
 
   //submite button
   const createEmployee = (data) => {
     //verication of the form
-    if (isValid) {
-      const FormatData = {
-        firstname: data.firstname,
-        lastname: data.lastname,
-        birthdate: dateFormated(data.birthdate),
-        startdate: dateFormated(data.startdate),
+     if (isValid) {
+      const formatData = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        birthDate: dateFormated(data.birthDate),
+        startDate: dateFormated(data.startDate),
         street: data.street,
         city: data.city,
         state: data.state.value,
-        zipcode: parseInt(data.zipcode),
+        zipCode: parseInt(data.zipCode),
         department: data.department.value,
       }
-      console.log(data)
-      console.log(FormatData)
-      //send to employee list
-      dispatch(addEmployee(FormatData))
+      openModal()
+      //visibility of the employee list
+      dispatch(addEmployee(formatData))
 
       //localstorage logic for persist redux
       //1. retrieve what actually is in the store
       //2. add the new employee (FormatData)
       //3. on the refresh , keep the localstorage
 
-    localStorage.push(FormatData)
-    console.log(FormatData)
       localStorage.setItem(
         'persist:user',
-        JSON.stringify('FormatData', FormatData)
+        JSON.stringify('formatData', formatData)
       ) 
       reset({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         street: '',
         city: '',
         state: '',
-        zipcode: null,
+        zipCode: null,
+        department: ''
       })
       //condition for open the modal
-     setIsOpen(true);
     } else {
-      console.log('Incomplete form')
+      console.log(data)
+      alert('form inalid')
+      console.log('The form is incomplete !')
     }
   }
 
   return (
     <div>
-      <form
-        onSubmit={handleSubmit(createEmployee)}
-        ref={form}
-      >
+      <form onSubmit={handleSubmit(createEmployee)} ref={form} >
         <label htmlFor="firstName">First Name</label>
-        <input
-          type="text"
-          id="firstName"
-          placeholder="Your First Name"
-          {...register(
+          <input
+            type="text"
+            id="firstName"
+            placeholder="Your First Name"
+            {...register(
             'firstName',
             { required: true },
             { pattern: /^[A-zÀ-ú-]{2,10}$/ }
-          )}
-        />
-        {errors.firstname && (
+            )}
+          />
+        {errors.firstName && (
           <span className="style_messageError">Firstname must contain upper and lower case, min 2 and max 10 characters </span>
         )}
         <label htmlFor="lastName">Last Name</label>
@@ -132,9 +122,10 @@ function FormHRnet() {
             { pattern: /^[A-zÀ-ú-]{2,10}$/ }
           )}
         />
-        {errors.lastname && (
+        {errors.lastName && (
           <span className="style_messageError">Last Name must contain upper and lower case, min 2 and max 10 characters</span>
         )}
+
         <label htmlFor="birthDate">Date of Birth</label>
         <div className="flex">
           <Controller
@@ -151,30 +142,30 @@ function FormHRnet() {
             )}
           />
         </div>
-
         <span className="style_messageError">
-          {errors.birthdate && errors.birthdate.message}
+          {errors.birthDate && errors.birthDate.message}
         </span>
 
         <label htmlFor="startdate">Start Date</label>
         <div className="flex">
           <Controller
             control={control}
-            name="startdate"
+            name="startDate"
             rules={{ required: 'StartDate required' }}
             render={({ field: { onChange, value } }) => (
               <DatePicker
                 selected={value}
                 onChange={onChange}
                 dateFormat="dd/MM/yyyy"
-                id="startdate"
+                id="startDate"
               />
             )}
           />
         </div>
         <span className="style_messageError">
-          {errors.startdate && errors.startdate.message}
+          {errors.startDate && errors.startDate.message}
         </span>
+
         <fieldset className="container_adress">
           <legend>Adress</legend>
           <div className="legend_Adress">
@@ -229,12 +220,12 @@ function FormHRnet() {
             <label htmlFor="zipcode">Zip Code</label>
             <input
               type="number"
-              id="zipcode"
+              id="zipCode"
               placeholder="Your Zip Code"
-              {...register('zipcode', { required: true })}
+              {...register('zipCode', { required: true })}
             />
             <div>
-            {errors.zipcode && (
+            {errors.zipCode && (
              <span className="style_messageError">Zip Code incorrect</span>
             )}</div>
           </div>
@@ -251,32 +242,17 @@ function FormHRnet() {
               {...field}
               label="Text field"
               inputId="department"
-              id="departement"
+              id="department"
             />
           )}
         />
-        <span className="style_messageError">
-          {errors.department && errors.department.message}
-        </span>
+        <span className="style_messageError">{errors.department && errors.department.message}</span>
 
-        <button onClick={openModal}
-          type="submit"
-        >
-          Save
-        </button>
-        <div className="box-modal">
-        <Modal className="style-modal"
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-        ariaHideApp={false}
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>The employee{/*  ${data.firstname} ${data.lastname} */} has been created </h2>
-        <button className='btn-close' onClick={closeModal}>X</button>
-      </Modal>
+        <button type="submit" onSubmit={() => setDisplayModal(true)} > Save </button>
+      </form>
+      <div className="centeritem">
+            <Modal  className="style-modal" message="The employee has been created !" showModal={displayModal}        hideModal={() => closeModal(false)} buttonText1='Ok' buttonText2='Cancel' />
       </div>
-</form>
     </div>
   )
 }

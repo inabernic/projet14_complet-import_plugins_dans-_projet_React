@@ -7,17 +7,17 @@ function List() {
   const columns = [
     {
       name: 'Firstname',
-      selector: (row) => row.firstname,
+      selector: (row) => row.firstName,
       sortable: true,
     },
     {
       name: 'Lastname',
-      selector: (row) => row.lastname,
+      selector: (row) => row.lastName,
       sortable: true,
     },
     {
       name: 'Start Date',
-      selector: (row) => row.startdate,
+      selector: (row) => row.startDate,
       sortable: true,
     },
     {
@@ -27,7 +27,7 @@ function List() {
     },
     {
       name: 'Date of Birth',
-      selector: (row) => row.birthdate,
+      selector: (row) => row.birthDate,
       sortable: true,
     },
     {
@@ -47,14 +47,15 @@ function List() {
     },
     {
       name: 'Zip Code',
-      selector: (row) => row.zipcode,
+      selector: (row) => row.zipCode,
       sortable: true,
     },
   ]
 
   //select user in reducer
   const userCreated = useSelector((state) => state.user.employeesSaved)
-console.log(userCreated)
+//console.log(userCreated)
+
   //SearchBar
   const [search, setNewSearch] = useState('')
 
@@ -65,15 +66,15 @@ console.log(userCreated)
     ? userCreated
     : userCreated.filter(
         (data) =>
-          data.firstname.toLowerCase().includes(search.toLowerCase()) ||
-          data.lastname.toLowerCase().includes(search.toLowerCase()) ||
-          data.startdate.toLowerCase().includes(search.toLowerCase()) ||
+          data.firstName.toLowerCase().includes(search.toLowerCase()) ||
+          data.lastName.toLowerCase().includes(search.toLowerCase()) ||
+          data.startDate.toLowerCase().includes(search.toLowerCase()) ||
           data.department.toLowerCase().includes(search.toLowerCase()) ||
-          data.birthdate.toLowerCase().includes(search.toLowerCase()) ||
+          data.birthDate.toLowerCase().includes(search.toLowerCase()) ||
           data.street.toLowerCase().includes(search.toLowerCase()) ||
           data.city.toLowerCase().includes(search.toLowerCase()) ||
           data.state.toLowerCase().includes(search.toLowerCase()) ||
-          data.zipcode.toString().includes(search)
+          data.zipCode.toString().includes(search)
       )
 
   return (

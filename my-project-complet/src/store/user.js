@@ -4,27 +4,27 @@ const initialState = {
   employeesSaved: [
     {
       // id: 0,
-      firstname: 'Adam',
-      lastname: 'Smith',
-      startdate: '01/01/2011',
+      firstName: 'Adam',
+      lastName: 'Smith',
+      startDate: '01/01/2011',
       department: 'Sales',
-      birthdate: '01/01/1988',
+      birthDate: '01/01/1988',
       street: 'Columbia St',
       city: 'San DIego',
       state: 'SD',
-      zipcode: 92101,
+      zipCode: 92101,
     },
     {
       // id: 1,
-      firstname: 'Ilona ',
-      lastname: 'Mercer',
-      startdate: '12/10/2000',
+      firstName: 'Ilona ',
+      lastName: 'Mercer',
+      startDate: '12/10/2000',
       department: 'Marketing',
-      birthdate: '10/12/1987',
+      birthDate: '10/12/1987',
       street: 'Merchant St',
       city: 'Trenton',
       state: 'TR',
-      zipcode: 98628 ,
+      zipCode: 98628 ,
     },
   ],
 }
@@ -36,6 +36,7 @@ const userSlice = createSlice({
     addEmployee(state, action) {
       // add in my table the new employees
       state.employeesSaved.push(action.payload)
+      console.log(addEmployee)
     },
   },
 })

@@ -50,7 +50,6 @@ button[type=submit] {
     cursor: pointer;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-    width: 15%;
     align-self: center;
 }
 
@@ -84,11 +83,11 @@ legend .style_messageError {
 #firstName,
 #lastName,
 #birthDate,
-#startdate,
+#startDate,
 #street,
 #city,
 #state,
-#zipcode,
+#zipCode,
 #departement {
     width: 100%;
     padding: 10px;
@@ -108,32 +107,6 @@ label {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.modal {
-    visibility: hidden;
-    opacity: 0;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    top: 4px;
-    left: 30%;
-    width: 70%;
-    height: 100%;
-}
 
 .modal:target {
     visibility: visible;
@@ -157,14 +130,6 @@ label {
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
-
-.modal-wrapper {
-    background-color: #FFF;
-    width: 70%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    overflow: auto;
 }
 
 .CurentEmpl {
