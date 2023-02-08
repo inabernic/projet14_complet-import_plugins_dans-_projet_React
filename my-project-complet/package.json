@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/cli": "^7.20.7",
-    "@bernic/npm-modal": "^0.5.2",
+    "@bernic/npm-modal": "^0.5.3",
     "@hookform/resolvers": "^2.9.10",
     "@mui/base": "^5.0.0-alpha.116",
     "@primer/react": "^35.19.0",

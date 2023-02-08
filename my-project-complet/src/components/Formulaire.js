@@ -250,9 +250,7 @@ console.log(errors);
 
         <button type="submit" onSubmit={() => setDisplayModal(true)} > Save </button>
       </form>
-      <div className="centeritem">
-            <Modal  className="style-modal" message="The employee has been created !" showModal={displayModal}        hideModal={() => closeModal(false)} buttonText1='Ok' buttonText2='Cancel' />
-      </div>
+            <Modal  className="style-modal" message="The employee has been created !" showModal={displayModal}        hideModal={() => closeModal(false)} buttonOk='Ok'/>
     </div>
   )
 }
