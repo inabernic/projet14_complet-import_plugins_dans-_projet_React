@@ -101,7 +101,7 @@ console.log(errors);
           <input
             type="text"
             id="firstName"
-            placeholder="Your First Name"
+            placeholder="Your First Name, min 2 and max 10 characters"
             {...register(
             'firstName',
             { required: true },
@@ -109,13 +109,13 @@ console.log(errors);
             )}
           />
         {errors.firstName && (
-          <span className="style_messageError">Firstname must contain upper and lower case, min 2 and max 10 characters </span>
+          <span className="style_messageError">Firstname must contain upper and lower case </span>
         )}
         <label htmlFor="lastName">Last Name</label>
         <input
           type="text"
           id="lastName"
-          placeholder="Your Last Name"
+          placeholder="Your Last Name, min 2 and max 10 characters"
           {...register(
             'lastName',
             { required: true },
@@ -123,7 +123,7 @@ console.log(errors);
           )}
         />
         {errors.lastName && (
-          <span className="style_messageError">Last Name must contain upper and lower case, min 2 and max 10 characters</span>
+          <span className="style_messageError">Last Name must contain upper and lower case</span>
         )}
 
         <label htmlFor="birthDate">Date of Birth</label>
@@ -131,7 +131,8 @@ console.log(errors);
           <Controller
             control={control}
             name="birthDate"
-            rules={{ required: 'BirthDate required' }}
+          
+            rules={{ required: 'BirthDate required, dd/MM/yyyy' }}
             render={({ field: { onChange, value } }) => (
               <DatePicker
                 selected={value}
@@ -151,7 +152,7 @@ console.log(errors);
           <Controller
             control={control}
             name="startDate"
-            rules={{ required: 'StartDate required' }}
+            rules={{ required: 'StartDate required, dd/MM/yyyy ' }}
             render={({ field: { onChange, value } }) => (
               <DatePicker
                 selected={value}
@@ -200,6 +201,7 @@ console.log(errors);
             <label htmlFor="state">State</label>
             <Controller
               name="state"
+              id="state"
               control={control}
               defaultValue=""
               rules={{ required: 'Select a state' }}
@@ -209,7 +211,7 @@ console.log(errors);
                   {...field}
                   label="Text field"
                   inputId="state"
-                  id="state"
+                  
                 />
               )}
             />
