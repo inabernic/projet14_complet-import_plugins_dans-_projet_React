@@ -6,8 +6,6 @@
     "@babel/cli": "^7.20.7",
     "@bernic/npm-modal": "^0.5.3",
     "@hookform/resolvers": "^2.9.10",
-    "@mui/base": "^5.0.0-alpha.116",
-    "@primer/react": "^35.19.0",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -17,7 +15,6 @@
     "react-data-table-component": "^7.5.3",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
-    "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
@@ -25,8 +22,7 @@
     "react-table": "^2.0.1",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
-    "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

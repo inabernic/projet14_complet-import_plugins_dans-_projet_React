@@ -147,7 +147,7 @@ console.log(errors);
           {errors.birthDate && errors.birthDate.message}
         </span>
 
-        <label htmlFor="startdate">Start Date</label>
+        <label htmlFor="startDate">Start Date</label>
         <div className="flex">
           <Controller
             control={control}
