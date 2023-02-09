@@ -4,7 +4,6 @@ import { useForm, Controller } from 'react-hook-form'
 import { addEmployee } from '../store/user'
 import { optionStates, optionDepartment } from './../data/data'
 
-//modal
 //import Modal from 'react-modal';
 import {Modal} from '@bernic/npm-modal'
 
@@ -89,8 +88,6 @@ console.log(errors);
       //condition for open the modal
     } else {
       console.log(data)
-      alert('form inalid')
-      console.log('The form is incomplete !')
     }
   }
 
@@ -232,7 +229,7 @@ console.log(errors);
             )}</div>
           </div>
         </fieldset>
-        <label htmlFor="department">Department</label>
+        <label  htmlFor="department">Department</label>
         <Controller
           name="department"
           control={control}
@@ -244,7 +241,6 @@ console.log(errors);
               {...field}
               label="Text field"
               inputId="department"
-              id="department"
             />
           )}
         />

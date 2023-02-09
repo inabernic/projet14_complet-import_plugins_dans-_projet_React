@@ -54,7 +54,6 @@ function List() {
 
   //select user in reducer
   const userCreated = useSelector((state) => state.user.employeesSaved)
-//console.log(userCreated)
 
   //SearchBar
   const [search, setNewSearch] = useState('')
