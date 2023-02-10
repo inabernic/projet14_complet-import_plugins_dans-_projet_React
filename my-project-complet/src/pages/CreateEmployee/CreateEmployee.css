@@ -10,11 +10,12 @@
     margin: 0 auto;
 }
 
-.container h1 {
+.title {
     color: #37773a;
     margin-block-start: 1rem;
     margin-block-end: 2px;
     text-align: center;
+    font-weight: bold;
 }
 
 .body_container {

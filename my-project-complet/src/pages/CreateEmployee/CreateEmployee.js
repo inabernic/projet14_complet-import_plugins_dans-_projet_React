@@ -23,7 +23,7 @@ function CreateEmployee() {
           </Link>
         </div>
         <div className="container">
-        <h1> The Form for Create a New Employee  </h1>
+        <div className="title"> The Form for Create a New Employee  </div>
         <Formulaire />
       </div>
     </div>
