@@ -81,11 +81,10 @@ function List() {
         <div>
         <div>
       <div className="box_search">
-        <label>Search</label>
+        <label htmlFor="table_search" aria-labelledby="firstname">Search</label>
         <input
           type="text"
           id="table_search"
-          className="table_search"
           onChange={searchItems}
         />
       </div>
