@@ -9,11 +9,9 @@
     width: 85%;
 }
 
-.body_table h1 {
-    color: #37773a;
-    margin-block-start: 1rem;
-    margin-block-end: 4rem;
-    text-align: center;
+.table-title {
+    margin-bottom: 4rem;
+    margin-top: 2rem;
 }
 
 .box_search {

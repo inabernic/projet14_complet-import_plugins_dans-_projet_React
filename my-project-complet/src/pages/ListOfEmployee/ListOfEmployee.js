@@ -23,7 +23,7 @@ function ListOfEmployee() {
         </div>
 
       <div className="body_table">
-        <h1>The table of the Current employees</h1>
+        <div className="title table-title">The table of the Current employees</div>
         <List />
       </div>
     </div>

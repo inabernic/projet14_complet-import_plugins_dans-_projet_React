@@ -4,8 +4,6 @@
     background-color: #f2f2f2;
     padding-left: 3em;
     padding-right: 3em;
-    padding-top: 1em;
-    padding-bottom: 1em;
     min-width: 30%;
     margin: 0 auto;
 }
@@ -32,13 +30,13 @@
 }
 
 .redirection_box a {
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
     padding-left: 2.5rem;
 }
 
 .redirection_current_employ,
 .redirection_home {
-    font-size: 20px;
+    font-size: 17px;
 }
 
 button[type=submit] {
